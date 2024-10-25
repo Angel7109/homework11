@@ -1,13 +1,15 @@
-import express from 'express';
+const express = require('express');
+const path = require('path');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Root route
+app.use(express.static('views'));
+
 app.get('/', (req, res) => {
-  res.send('Hello World from the Vercel deployment!');
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
